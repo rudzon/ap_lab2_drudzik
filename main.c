@@ -4,7 +4,6 @@
 #include <stdlib.h> // Я отсюда юзаю exit()
 
 
-
 float side_A, side_B, side_C;//Стороны треугольника
 float per, halfper;//Периметр и полпериметр
 double S;//Площадь
@@ -12,17 +11,12 @@ double ht_to_A, ht_to_B, ht_to_C;//Высоты
 float medi_to_A, medi_to_B, medi_to_C;//Медианы
 double bisectr_to_A, bisectr_to_B, bisectr_to_C; //Бисектрисы
 
-
-int main()
-{
-	side_checker(); /* Это заюзать функцию, вроде */
-	rule_checker(); // Проверка правил существования треугольников
-	calculations(); // А это заюзает подсчёты
+void wrong() {
+	printf("\nWrong input!!!\n Enter only positive numbers\n Exiting programm\n");
+	exit(0);
 }
 
-
-void side_checker()   /* Чек сторон */
-{
+void side_checker(void) {
 	// Side_A
 	printf("\n Enter any positive number for your side A:  ");
 	scanf("%f",&side_A);
@@ -41,8 +35,7 @@ void side_checker()   /* Чек сторон */
 	}
 }
 
-void rule_checker()
-{
+void rule_checker() {
 	if(!((side_A+side_B) > side_C && (side_A+side_C) > side_B && (side_B+side_C) > side_A))
 	{
 		printf("\nThat triangle does not exist!\nExiting programm");
@@ -89,8 +82,8 @@ void calculations() //Подсчёты
 }
 
 
-void wrong()
-{
-	printf("\nWrong input!!!\n Enter only positive numbers\n Exiting programm\n");
-	exit(0);
+int main(void) {
+	side_checker(); /* Это заюзать функцию, вроде */
+	rule_checker(); // Проверка правил существования треугольников
+	calculations(); // А это заюзает подсчёты
 }
