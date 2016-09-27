@@ -1,5 +1,7 @@
 # ap_lab2_drudzik
 
-## make
-`make clean`
+## compile
 `make`
+
+## test
+`make clean && make && cat test.txt | ./main`
