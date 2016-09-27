@@ -52,9 +52,13 @@ void showCalculations(float side_A, float side_B, float side_C) //Подсчёт
 
 float prompt(char* str) {
     float res;
-
+    char term;
+    
     printf("\n %s", str);
-    scanf("%f", &res);
+
+    if (scanf("%f%c", &res, &term) != 2 || term != '\n') {
+        error("Wrong format");
+    }
 
     if (res < 0) {
         error("Wrong format");
