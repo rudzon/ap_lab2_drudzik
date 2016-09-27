@@ -3,49 +3,18 @@
 #include <math.h> // sqrt
 #include <stdlib.h> // Я отсюда юзаю exit()
 
-
-float side_A, side_B, side_C;//Стороны треугольника
-float per, halfper;//Периметр и полпериметр
-double S;//Площадь
-double ht_to_A, ht_to_B, ht_to_C;//Высоты
-float medi_to_A, medi_to_B, medi_to_C;//Медианы
-double bisectr_to_A, bisectr_to_B, bisectr_to_C; //Бисектрисы
-
-void wrong() {
-	printf("\nWrong input!!!\n Enter only positive numbers\n Exiting programm\n");
+void error(char* errorMsg) {
+	printf("\n %s \n ", errorMsg);
 	exit(0);
 }
 
-void side_checker(void) {
-	// Side_A
-	printf("\n Enter any positive number for your side A:  ");
-	scanf("%f",&side_A);
-
-	// Side_B
-	printf("\n Enter any positive number for your side B:  ");
-	scanf("%f",&side_B);
-
-	// Side C
-	printf("\n Enter any positive number for your side C:  ");
-	scanf("%f",&side_C);
-
-	if((side_A < 0)||(side_B < 0)||(side_C <0))
-	{
-		wrong();
-	}
-}
-
-void rule_checker() {
-	if(!((side_A+side_B) > side_C && (side_A+side_C) > side_B && (side_B+side_C) > side_A))
-	{
-		printf("\nThat triangle does not exist!\nExiting programm");
-		exit(0);
-	}
-
-}
-
-void calculations() //Подсчёты
+void showCalculations(float side_A, float side_B, float side_C) //Подсчёты
 {
+    float   per, halfper;//Периметр и полпериметр
+    double  S;//Площадь
+    double  ht_to_A, ht_to_B, ht_to_C;//Высоты
+    float   medi_to_A, medi_to_B, medi_to_C;//Медианы
+    double  bisectr_to_A, bisectr_to_B, bisectr_to_C; //Бисектрисы
 
 	per = side_A+side_B+side_C; //Периметр
 	printf("\n Perimeter: %f", per); //%f Юзает значения которые за скобочками (полезно)
@@ -81,9 +50,33 @@ void calculations() //Подсчёты
 	printf("\n Bisectr to side C: %f\n", bisectr_to_C);
 }
 
+float prompt(char* str) {
+    float res;
+
+    printf("\n %s", str);
+    scanf("%f", &res);
+
+    if (res < 0) {
+        error("Wrong format");
+    }
+
+    if (res == 0) {
+        error("Wrong format");
+    }
+
+    return res;
+}
 
 int main(void) {
-	side_checker(); /* Это заюзать функцию, вроде */
-	rule_checker(); // Проверка правил существования треугольников
-	calculations(); // А это заюзает подсчёты
+    float side_A = prompt("Enter any positive number for your side A:");
+    float side_B = prompt("Enter any positive number for your side B:");
+    float side_C = prompt("Enter any positive number for your side C:");
+
+    printf("\n Triangle A: %f B: %f C: %f \n", side_A, side_B, side_C);
+
+    if(!((side_A+side_B) > side_C && (side_A+side_C) > side_B && (side_B+side_C) > side_A)) {
+		error("That triangle does not exist!");
+	}
+
+    showCalculations(side_A, side_B, side_C);
 }
