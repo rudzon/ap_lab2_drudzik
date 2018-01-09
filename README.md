@@ -1,5 +1,5 @@
 # ap_lab2_drudzik
-
+qweqweqwe
 ## compile
 `make`
 
