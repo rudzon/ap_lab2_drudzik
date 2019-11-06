@@ -5,3 +5,4 @@ qweqweqwe
 
 ## test
 `make clean && make && cat test.txt | ./main`
+qweqweqwe
